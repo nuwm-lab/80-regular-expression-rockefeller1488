@@ -1,18 +1,20 @@
-﻿using System;
+using System;
+using System.Text.RegularExpressions;
 
-namespace LabWork
+class Program
 {
-    // Даний проект є шаблоном для виконання лабораторних робіт
-    // з курсу "Об'єктно-орієнтоване програмування та патерни проектування"
-    // Необхідно змінювати і дописувати код лише в цьому проекті
-    // Відео-інструкції щодо роботи з github можна переглянути 
-    // за посиланням https://www.youtube.com/@ViktorZhukovskyy/videos 
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        string inputText = "Контактні номери: +3(123)-456-7890, +3(987)-654-3210, неправильний номер +3(123)-4567-890";
+        
+        string pattern = @"\+3\(\d{3}\)-\d{3}-\d{4}";
+        Regex regex = new Regex(pattern);
+
+        MatchCollection matches = regex.Matches(inputText);
+
+        foreach (Match match in matches)
         {
-            
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Знайдений номер: " + match.Value);
         }
     }
 }
